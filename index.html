@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#07120e">
+    <title>Football AI Scouting</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <div id="intro" class="intro">
+        <div class="intro-lights"></div>
+        <div class="intro-ball">⚽</div>
+        <div class="intro-line"></div>
+        <h1>FOOTBALL <span>AI</span></h1>
+        <p>THE NEXT STAR IS OUT THERE</p>
+        <button id="skipIntro" class="skip-intro">SKIP INTRO →</button>
+    </div>
+
+    <header class="topbar">
+        <a href="#" class="brand" data-page="homePage">
+            <span class="brand-icon">⚽</span>
+            <span>FOOTBALL <b>AI</b></span>
+        </a>
+        <span class="topbar-label">SCOUTING PLATFORM</span>
+    </header>
+
+    <main>
+
+        <section id="homePage" class="page hero-page">
+            <div class="hero-overlay"></div>
+
+            <div class="hero-content">
+                <span class="eyebrow">YOUR NEXT STAR STARTS HERE</span>
+                <h1>DISCOVER<br>THE <span>NEXT</span> STAR.</h1>
+
+                <p>
+                    Explore players, analyze skills, and find the right talent.
+                </p>
+
+                <div class="home-actions">
+                    <button class="action-card" data-page="namePage">
+                        <span class="action-icon">⌕</span>
+                        <span class="action-title">SEARCH BY NAME</span>
+                        <span class="action-desc">Find a specific player</span>
+                        <span class="action-arrow">↗</span>
+                    </button>
+
+                    <button class="action-card" data-page="skillsPage">
+                        <span class="action-icon">⚙</span>
+                        <span class="action-title">SEARCH BY SKILLS</span>
+                        <span class="action-desc">Filter players by abilities</span>
+                        <span class="action-arrow">↗</span>
+                    </button>
+
+                    <button class="action-card" data-page="allPage">
+                        <span class="action-icon">♙</span>
+                        <span class="action-title">ALL PLAYERS</span>
+                        <span class="action-desc">Explore the full database</span>
+                        <span class="action-arrow">↗</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="hero-footer">
+                BUILT FOR FOOTBALL MINDS
+                <span>● DATABASE SCOUTING</span>
+            </div>
+        </section>
+
+        <section id="namePage" class="page content-page hidden">
+            <button class="back-button" data-page="homePage">
+                ← HOME
+            </button>
+
+            <div class="section-heading">
+                <span class="eyebrow">PLAYER DATABASE</span>
+                <h1>SEARCH BY <span>NAME</span></h1>
+                <p>Type a player's name to find matching players.</p>
+            </div>
+
+            <div class="search-box">
+                <span>⌕</span>
+
+                <input
+                    id="nameSearch"
+                    type="search"
+                    placeholder="Start typing a player name..."
+                    autocomplete="off"
+                >
+
+                <button id="clearName" type="button">×</button>
+                <div id="suggestions" class="suggestions hidden"></div>
+            </div>
+
+            <div id="nameStatus" class="status-text"></div>
+            <div id="nameResults" class="players-grid"></div>
+        </section>
+
+        <section id="skillsPage" class="page content-page hidden">
+            <button class="back-button" data-page="homePage">
+                ← HOME
+            </button>
+
+            <div class="section-heading">
+                <span class="eyebrow">BUILD YOUR PLAYER PROFILE</span>
+                <h1>SEARCH BY <span>SKILLS</span></h1>
+                <p>Set your requirements to discover matching players.</p>
+            </div>
+
+            <div class="filters-panel">
+                <h2>PLAYER INFORMATION</h2>
+
+                <div class="filters-grid">
+                    <label class="filter">
+                        Position
+                        <select id="position">
+                            <option value="">All Positions</option>
+                            <option>GK</option>
+                            <option>CB</option>
+                            <option>LB</option>
+                            <option>RB</option>
+                            <option>CM</option>
+                            <option>CDM</option>
+                            <option>CAM</option>
+                            <option>LM</option>
+                            <option>RM</option>
+                            <option>LW</option>
+                            <option>RW</option>
+                            <option>ST</option>
+                            <option>CF</option>
+                        </select>
+                    </label>
+
+                    <label class="filter">
+                        Minimum Age
+                        <input id="minAge" type="number" min="15" max="60" placeholder="e.g. 18">
+                    </label>
+
+                    <label class="filter">
+                        Maximum Age
+                        <input id="maxAge" type="number" min="15" max="60" placeholder="e.g. 25">
+                    </label>
+
+                    <label class="filter">
+                        Nation
+                        <select id="nation">
+                            <option value="">All Nations</option>
+                        </select>
+                    </label>
+
+                    <label class="filter">
+                        League
+                        <select id="league">
+                            <option value="">All Leagues</option>
+                        </select>
+                    </label>
+
+                    <label class="filter">
+                        Team
+                        <select id="team">
+                            <option value="">All Teams</option>
+                        </select>
+                    </label>
+
+                    <label class="filter">
+                        Preferred Foot
+                        <select id="preferredFoot">
+                            <option value="">Both</option>
+                            <option value="Left">Left</option>
+                            <option value="Right">Right</option>
+                        </select>
+                    </label>
+                </div>
+
+                <h2>PLAYER ATTRIBUTES</h2>
+
+                <div class="filters-grid">
+                    <label class="filter">
+                        Minimum OVR
+                        <input id="minOVR" type="number" min="0" max="99" placeholder="e.g. 80">
+                    </label>
+
+                    <label class="filter">
+                        Minimum PAC
+                        <input id="minPAC" type="number" min="0" max="99" placeholder="e.g. 80">
+                    </label>
+
+                    <label class="filter">
+                        Minimum SHO
+                        <input id="minSHO" type="number" min="0" max="99" placeholder="e.g. 75">
+                    </label>
+
+                    <label class="filter">
+                        Minimum PAS
+                        <input id="minPAS" type="number" min="0" max="99" placeholder="e.g. 75">
+                    </label>
+
+                    <label class="filter">
+                        Minimum DRI
+                        <input id="minDRI" type="number" min="0" max="99" placeholder="e.g. 80">
+                    </label>
+
+                    <label class="filter">
+                        Minimum DEF
+                        <input id="minDEF" type="number" min="0" max="99" placeholder="e.g. 70">
+                    </label>
+
+                    <label class="filter">
+                        Minimum PHY
+                        <input id="minPHY" type="number" min="0" max="99" placeholder="e.g. 70">
+                    </label>
+
+                    <label class="filter">
+                        Acceleration
+                        <input id="minAcceleration" type="number" min="0" max="99">
+                    </label>
+
+                    <label class="filter">
+                        Sprint Speed
+                        <input id="minSprint" type="number" min="0" max="99">
+                    </label>
+
+                    <label class="filter">
+                        Finishing
+                        <input id="minFinishing" type="number" min="0" max="99">
+                    </label>
+
+                    <label class="filter">
+                        Shot Power
+                        <input id="minShotPower" type="number" min="0" max="99">
+                    </label>
+
+                    <label class="filter">
+                        Long Shots
+                        <input id="minLongShots" type="number" min="0" max="99">
+                    </label>
+
+                    <label class="filter">
+                        Vision
+                        <input id="minVision" type="number" min="0" max="99">
+                    </label>
+
+                    <label class="filter">
+                        Short Passing
+                        <input id="minShortPassing" type="number" min="0" max="99">
+                    </label>
+
+                    <label class="filter">
+                        Dribbling
+                        <input id="minDribbling" type="number" min="0" max="99">
+                    </label>
+
+                    <label class="filter">
+                        Ball Control
+                        <input id="minBallControl" type="number" min="0" max="99">
+                    </label>
+
+                    <label class="filter">
+                        Stamina
+                        <input id="minStamina" type="number" min="0" max="99">
+                    </label>
+
+                    <label class="filter">
+                        Strength
+                        <input id="minStrength" type="number" min="0" max="99">
+                    </label>
+                </div>
+
+                <div class="filter-actions">
+                    <button id="searchSkills" class="primary-button">
+                        SEARCH PLAYERS ↗
+                    </button>
+
+                    <button id="resetSkills" class="secondary-button">
+                        RESET FILTERS ↺
+                    </button>
+                </div>
+            </div>
+
+            <div class="results-heading">
+                <h2>SCOUTING RESULTS</h2>
+                <span id="skillsCount">0 players</span>
+            </div>
+
+            <div id="skillsResults" class="players-grid"></div>
+            <div id="skillsPagination" class="pagination"></div>
+        </section>
+
+        <section id="allPage" class="page content-page hidden">
+            <button class="back-button" data-page="homePage">
+                ← HOME
+            </button>
+
+            <div class="section-heading">
+                <span class="eyebrow">COMPLETE PLAYER DATABASE</span>
+                <h1>ALL <span>PLAYERS</span></h1>
+                <p>Browse the players available in the database.</p>
+            </div>
+
+            <div class="results-heading">
+                <h2>PLAYER DATABASE</h2>
+                <span id="allCount">Loading players...</span>
+            </div>
+
+            <div id="allResults" class="players-grid"></div>
+            <div id="allPagination" class="pagination"></div>
+        </section>
+
+    </main>
+
+    <div id="profileModal" class="modal hidden" role="dialog" aria-modal="true">
+        <div class="profile-box">
+            <button
+                id="closeProfile"
+                class="close-button"
+                aria-label="Close profile"
+            >
+                ×
+            </button>
+
+            <div id="profileContent"></div>
+        </div>
+    </div>
+
+    <footer>
+        <span>FOOTBALL <b>AI</b> SCOUTING</span>
+        <span>PLAYER DATA &amp; STATISTICS</span>
+    </footer>
+
+    <script src="/script.js"></script>
+</body>
+</html>
